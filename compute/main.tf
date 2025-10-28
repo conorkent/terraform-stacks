@@ -25,7 +25,7 @@ variable "region" {
 resource "aws_instance" "web" {
   ami           = "ami-0c55b159cbfafe1f0" # Amazon Linux
   instance_type = "t3.micro"
-  subnet_id     = null # you’ll refine this later
+  subnet_id     = null # refine this later
   tags = { Name = "stack-demo-instance" }
 }
 
