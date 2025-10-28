@@ -24,6 +24,10 @@ component "compute" {
   providers = {
     aws = provider.aws.main
   }
+  
+  inputs = {
+    vpc_id = component.networking.vpc_id
+  }
 }
 
 component "app" {
@@ -31,6 +35,10 @@ component "app" {
   
   providers = {
     aws = provider.aws.main
+  }
+  
+  inputs = {
+    instance_id = component.compute.instance_id
   }
 }
 
