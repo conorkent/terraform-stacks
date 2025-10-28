@@ -1,24 +1,41 @@
-stack "three-tier" {
-  description = "Demo 3-tier application managed with HCP Terraform Stacks"
-  source = "./"
-  variables = {
-    region = "us-east-1"
+required_providers {
+  aws = {
+    source  = "hashicorp/aws"
+    version = "~> 5.0"
   }
 }
 
-workspace "networking" {
-  description = "VPC and subnets"
+variable "region" {
+  type    = string
+  default = "us-east-1"
+}
+
+component "networking" {
   source = "./networking"
+  
+  providers = {
+    aws = provider.aws.main
+  }
 }
 
-workspace "compute" {
-  description = "EC2 instances"
+component "compute" {
   source = "./compute"
-  depends_on = ["networking"]
+  
+  providers = {
+    aws = provider.aws.main
+  }
 }
 
-workspace "app" {
-  description = "App layer that depends on compute"
+component "app" {
   source = "./app"
-  depends_on = ["compute"]
+  
+  providers = {
+    aws = provider.aws.main
+  }
+}
+
+provider "aws" "main" {
+  config {
+    region = var.region
+  }
 }
