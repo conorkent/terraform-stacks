@@ -9,15 +9,10 @@ terraform {
   }
 }
 
-component "example" {
-  source = "./example"
-  
-  inputs = {
-    environment = var.environment
-  }
+component "dev" {
+  source = "./dev"
 }
 
-variable "environment" {
-  type        = string
-  description = "Environment name"
+component "prod" {
+  source = "./prod"
 }
