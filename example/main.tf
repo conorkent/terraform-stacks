@@ -19,16 +19,23 @@ variable "region" {
   default     = "us-east-1"
 }
 
+variable "environment" {
+  type        = string
+  description = "Environment name (dev, prod, etc.)"
+  default     = "dev"
+}
+
 provider "aws" {
   region = var.region
 }
 
 resource "aws_s3_bucket" "test" {
-  bucket = "terraform-stacks-test-${random_id.bucket_suffix.hex}"
+  bucket = "terraform-stacks-${var.environment}-${random_id.bucket_suffix.hex}"
   
   tags = {
-    Name        = "Terraform Stacks Test"
-    Environment = "test"
+    Name        = "Terraform Stacks ${title(var.environment)}"
+    Environment = var.environment
+    ManagedBy   = "terraform-stacks"
   }
 }
 

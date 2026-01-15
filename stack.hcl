@@ -11,4 +11,13 @@ terraform {
 
 component "example" {
   source = "./example"
+  
+  inputs = {
+    environment = var.environment
+  }
+}
+
+variable "environment" {
+  type        = string
+  description = "Environment name"
 }
