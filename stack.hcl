@@ -9,22 +9,14 @@ terraform {
   }
 }
 
-variable "region" {
-  type = string
-}
-
 component "example" {
   source = "./example"
-  
-  providers = {
-    aws = provider.aws
-  }
   
   inputs = {
     region = var.region
   }
 }
 
-provider "aws" {
-  region = var.region
+variable "region" {
+  type = string
 }

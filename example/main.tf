@@ -18,6 +18,10 @@ variable "region" {
   description = "AWS region"
 }
 
+provider "aws" {
+  region = var.region
+}
+
 resource "aws_s3_bucket" "test" {
   bucket = "terraform-stacks-test-${random_id.bucket_suffix.hex}"
   
