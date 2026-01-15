@@ -13,10 +13,6 @@ terraform {
   }
 }
 
-provider "aws" {
-  region = "us-east-1"
-}
-
 resource "aws_s3_bucket" "test" {
   bucket = "terraform-stacks-test-${random_id.bucket_suffix.hex}"
   
