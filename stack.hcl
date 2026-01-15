@@ -19,6 +19,10 @@ component "example" {
   providers = {
     aws = provider.aws
   }
+  
+  inputs = {
+    region = var.region
+  }
 }
 
 provider "aws" {

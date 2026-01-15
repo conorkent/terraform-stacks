@@ -13,6 +13,11 @@ terraform {
   }
 }
 
+variable "region" {
+  type        = string
+  description = "AWS region"
+}
+
 resource "aws_s3_bucket" "test" {
   bucket = "terraform-stacks-test-${random_id.bucket_suffix.hex}"
   
