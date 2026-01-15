@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 1.9.0"
+  required_version = ">= 1.6.0"
   
   required_providers {
     aws = {
@@ -16,14 +16,8 @@ variable "region" {
 
 component "example" {
   source = "./example"
-  
-  providers = {
-    aws = provider.aws.main
-  }
 }
 
-provider "aws" "main" {
-  config {
-    region = var.region
-  }
+provider "aws" {
+  region = var.region
 }
