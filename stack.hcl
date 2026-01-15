@@ -9,14 +9,15 @@ terraform {
   }
 }
 
+variable "region" {
+  type        = string
+  description = "AWS region for resources"
+}
+
 component "example" {
   source = "./example"
   
   inputs = {
     region = var.region
   }
-}
-
-variable "region" {
-  type = string
 }
