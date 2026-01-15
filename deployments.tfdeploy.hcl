@@ -1,5 +1,5 @@
 deployment "dev" {
-  inputs = {
+  variables = {
     region = "us-east-1"
   }
 }

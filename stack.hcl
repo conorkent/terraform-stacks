@@ -14,35 +14,11 @@ variable "region" {
   default = "us-east-1"
 }
 
-component "networking" {
-  source = "./networking"
+component "example" {
+  source = "./example"
   
   providers = {
     aws = provider.aws.main
-  }
-}
-
-component "compute" {
-  source = "./compute"
-  
-  providers = {
-    aws = provider.aws.main
-  }
-  
-  inputs = {
-    vpc_id = component.networking.vpc_id
-  }
-}
-
-component "app" {
-  source = "./app"
-  
-  providers = {
-    aws = provider.aws.main
-  }
-  
-  inputs = {
-    instance_id = component.compute.instance_id
   }
 }
 
